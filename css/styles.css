@@ -1,0 +1,686 @@
+/* ============================================================
+   styles.css — Hoja de estilos principal de NexoWeb
+   Organizado en secciones:
+   1. Variables y reset
+   2. Componentes reutilizables
+   3. Header & Nav
+   4. Hero
+   5. Servicios
+   6. Portafolio
+   7. Contacto
+   8. Footer
+   9. Responsive (media queries)
+============================================================ */
+
+/* ------------------------------------------------------------
+   1. VARIABLES CSS Y RESET
+   Las variables (--nombre) permiten reutilizar valores
+   de color, fuente y espaciado en todo el archivo.
+   El reset elimina estilos por defecto del navegador.
+------------------------------------------------------------ */
+:root {
+  --color-primario: #6c63ff;
+  --color-secundario: #ff6584;
+  --color-oscuro: #0f0f1a;
+  --color-texto: #2d2d2d;
+  --color-gris: #6b7280;
+  --color-claro: #f9fafb;
+  --color-blanco: #ffffff;
+  --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --sombra: 0 4px 20px rgba(108, 99, 255, 0.15);
+  --radio-borde: 12px;
+  --transicion: all 0.3s ease;
+}
+
+/* Reset universal: elimina márgenes y padding predeterminados */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* El padding no aumenta el tamaño del elemento */
+}
+
+html {
+  scroll-behavior: smooth; /* Hace el scroll suave al hacer clic en anclas (#) */
+}
+
+body {
+  font-family: var(--fuente-principal);
+  color: var(--color-texto);
+  background-color: var(--color-blanco);
+  line-height: 1.6; /* Interlineado cómodo para lectura */
+}
+
+/* Elimina el subrayado y color por defecto de los enlaces */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Elimina las viñetas de las listas */
+ul {
+  list-style: none;
+}
+
+/* Imágenes responsivas: nunca más anchas que su contenedor */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ------------------------------------------------------------
+   2. COMPONENTES REUTILIZABLES
+   .container: limita el ancho máximo del contenido y lo centra.
+   .btn-primary: botón principal de la agencia.
+   .section-title / .section-subtitle: títulos de sección.
+------------------------------------------------------------ */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;       /* Centra horizontalmente */
+  padding: 0 1.5rem;    /* Espacio lateral en pantallas pequeñas */
+}
+
+/* Botón principal */
+.btn-primary {
+  display: inline-block;
+  background: var(--color-primario);
+  color: var(--color-blanco);
+  padding: 0.85rem 2rem;
+  border-radius: 50px;  /* Bordes redondeados tipo "pill" */
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: var(--transicion);
+  text-align: center;
+}
+
+/* Efecto hover: sube el botón y agrega sombra */
+.btn-primary:hover {
+  background: #574fd6;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+}
+
+.btn-full {
+  width: 100%; /* El botón ocupa todo el ancho disponible */
+  display: block;
+}
+
+/* Títulos de sección */
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: var(--color-texto);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--color-gris);
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+}
+
+/* Etiqueta de categoría (tag) en portafolio */
+.tag {
+  display: inline-block;
+  background: rgba(108, 99, 255, 0.1);
+  color: var(--color-primario);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0.4rem 0;
+}
+
+/* ------------------------------------------------------------
+   3. HEADER & NAVEGACIÓN
+   position: sticky mantiene el nav visible al hacer scroll.
+   backdrop-filter aplica un blur detrás (efecto cristal).
+------------------------------------------------------------ */
+header {
+  position: sticky;    /* Se queda fijo al hacer scroll */
+  top: 0;
+  z-index: 1000;       /* Siempre por encima de otros elementos */
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primario);
+  letter-spacing: -0.5px;
+}
+
+.logo-icon {
+  color: var(--color-secundario);
+}
+
+/* Menú de navegación horizontal */
+.nav-links {
+  display: flex;
+  gap: 2rem;            /* Espacio entre items */
+}
+
+.nav-links a {
+  color: var(--color-texto);
+  font-weight: 500;
+  padding: 0.3rem 0;
+  position: relative;
+  transition: var(--transicion);
+}
+
+/* Línea animada debajo del enlace al hacer hover */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primario);
+  transition: var(--transicion);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--color-primario);
+}
+
+/* Botón hamburguesa (oculto en desktop, visible en móvil) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-texto);
+}
+
+/* ------------------------------------------------------------
+   4. HERO SECTION
+   Sección de portada con gradiente de fondo.
+   Usa Flexbox para centrar y distribuir el contenido.
+------------------------------------------------------------ */
+.hero {
+  min-height: 90vh;    /* Ocupa casi toda la pantalla al cargar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 3rem;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 580px;
+}
+
+.hero-content h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem); /* Tamaño fluido entre 2rem y 3.2rem */
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+  color: var(--color-texto);
+}
+
+/* Texto destacado en morado */
+.highlight {
+  color: var(--color-primario);
+  background: linear-gradient(135deg, #6c63ff, #ff6584);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-content p {
+  font-size: 1.15rem;
+  color: var(--color-gris);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+/* Contenedor de tarjetas flotantes decorativas */
+.hero-visual {
+  flex: 1;
+  position: relative;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tarjetas flotantes con animación CSS */
+.floating-card {
+  position: absolute;
+  background: var(--color-blanco);
+  padding: 0.9rem 1.5rem;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-texto);
+  border-left: 4px solid var(--color-primario);
+}
+
+/* Cada tarjeta tiene posición y retraso de animación diferente */
+.card-1 {
+  top: 10%;
+  left: 5%;
+  animation: flotar 3s ease-in-out infinite;
+  border-left-color: var(--color-primario);
+}
+
+.card-2 {
+  top: 40%;
+  right: 0%;
+  animation: flotar 3s ease-in-out infinite 1s; /* Retraso de 1s */
+  border-left-color: var(--color-secundario);
+}
+
+.card-3 {
+  bottom: 10%;
+  left: 10%;
+  animation: flotar 3s ease-in-out infinite 2s; /* Retraso de 2s */
+  border-left-color: #43e97b;
+}
+
+/* Keyframes: define el movimiento de la animación "flotar" */
+@keyframes flotar {
+  0%, 100% { transform: translateY(0px); }   /* Posición inicial y final */
+  50%       { transform: translateY(-12px); } /* Punto más alto */
+}
+
+/* ------------------------------------------------------------
+   5. SERVICIOS
+   Grid CSS de 4 columnas que se adapta en pantallas pequeñas.
+------------------------------------------------------------ */
+.servicios {
+  background: var(--color-claro);
+  padding: 5rem 0;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+  gap: 1.5rem;
+}
+
+.servicio-card {
+  background: var(--color-blanco);
+  padding: 2rem 1.5rem;
+  border-radius: var(--radio-borde);
+  text-align: center;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+  transition: var(--transicion);
+}
+
+.servicio-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--sombra);
+}
+
+.servicio-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.servicio-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-texto);
+}
+
+.servicio-card p {
+  color: var(--color-gris);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------
+   6. PORTAFOLIO
+   Sección dinámica: el grid de proyectos se filtra con JS.
+   Las tarjetas usan la clase .oculto para mostrarse/ocultarse.
+------------------------------------------------------------ */
+.portafolio {
+  padding: 5rem 0;
+}
+
+/* Botones de filtro */
+.filtros {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.filtro-btn {
+  background: var(--color-claro);
+  color: var(--color-gris);
+  border: 2px solid transparent;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transicion);
+}
+
+.filtro-btn:hover,
+.filtro-btn.activo {
+  background: var(--color-primario);
+  color: var(--color-blanco);
+  border-color: var(--color-primario);
+}
+
+/* Grid de proyectos: 3 columnas */
+.proyectos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.proyecto-card {
+  border-radius: var(--radio-borde);
+  overflow: hidden;       /* Recorta el contenido que salga del borde redondeado */
+  box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+  transition: var(--transicion);
+}
+
+.proyecto-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--sombra);
+}
+
+/* Imagen/fondo del proyecto */
+.proyecto-img {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.proyecto-info {
+  padding: 1.25rem;
+  background: var(--color-blanco);
+}
+
+.proyecto-info h3 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.proyecto-info p {
+  color: var(--color-gris);
+  font-size: 0.88rem;
+  margin-top: 0.4rem;
+}
+
+/* Clase que oculta tarjetas al filtrar (controlada por JS) */
+.oculto {
+  display: none;
+}
+
+/* ------------------------------------------------------------
+   7. CONTACTO & FORMULARIO
+   Layout de dos columnas: información + formulario.
+   El formulario tiene estilos de validación visual.
+------------------------------------------------------------ */
+.contacto {
+  background: var(--color-claro);
+  padding: 5rem 0;
+}
+
+.contacto-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* Info más pequeña, formulario más grande */
+  gap: 3rem;
+  align-items: start;
+  position: relative;
+}
+
+/* Datos de contacto */
+.contacto-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--color-blanco);
+  padding: 1.25rem;
+  border-radius: var(--radio-borde);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.info-icon {
+  font-size: 1.5rem;
+}
+
+.info-item p {
+  color: var(--color-gris);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+/* Formulario */
+.contacto-form {
+  background: var(--color-blanco);
+  padding: 2rem;
+  border-radius: var(--radio-borde);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  color: var(--color-texto);
+}
+
+/* Estilos comunes para input, select y textarea */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb; /* Borde gris claro por defecto */
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--color-texto);
+  transition: var(--transicion);
+  background: var(--color-blanco);
+}
+
+/* Resalta el campo activo con borde morado */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+}
+
+/* Estado de error: borde rojo */
+.form-group input.error,
+.form-group textarea.error {
+  border-color: #ef4444;
+}
+
+/* Mensaje de error (texto rojo debajo del campo) */
+.error-msg {
+  display: block;
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  min-height: 1rem; /* Reserva espacio para evitar saltos visuales */
+}
+
+/* ------------------------------------------------------------
+   MODAL DE CONFIRMACIÓN
+   Overlay oscuro + tarjeta centrada.
+   display: none por defecto; JS agrega clase .activo.
+------------------------------------------------------------ */
+.modal-overlay {
+  display: none;             /* Oculto por defecto */
+  position: fixed;           /* Cubre toda la pantalla */
+  inset: 0;                  /* Equivale a top/right/bottom/left: 0 */
+  background: rgba(0,0,0,0.5);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.activo {
+  display: flex;             /* JS agrega esta clase para mostrarlo */
+}
+
+.modal {
+  background: var(--color-blanco);
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: aparecer 0.3s ease;
+}
+
+/* Animación de aparición del modal */
+@keyframes aparecer {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.modal-icon {
+  font-size: 3rem;
+  color: #22c55e;        /* Verde de éxito */
+  margin-bottom: 1rem;
+}
+
+.modal h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal p {
+  color: var(--color-gris);
+  margin-bottom: 1.5rem;
+}
+
+/* ------------------------------------------------------------
+   8. FOOTER
+------------------------------------------------------------ */
+footer {
+  background: var(--color-oscuro);
+  color: rgba(255,255,255,0.7);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+}
+
+/* ------------------------------------------------------------
+   9. RESPONSIVE — MEDIA QUERIES
+   Las media queries adaptan el diseño a pantallas pequeñas.
+   Breakpoint principal: 768px (tablets y móviles).
+------------------------------------------------------------ */
+@media (max-width: 768px) {
+
+  /* Oculta el menú y muestra el botón hamburguesa */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--color-blanco);
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    gap: 1rem;
+    z-index: 999;
+  }
+
+  /* JS agrega esta clase para mostrar el menú móvil */
+  .nav-links.abierto {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Hero en columna única */
+  .hero {
+    flex-direction: column;
+    padding: 3rem 1.5rem;
+    min-height: auto;
+    text-align: center;
+  }
+
+  .hero-visual {
+    min-height: 250px;
+    width: 100%;
+  }
+
+  /* Servicios: 2 columnas en tablet, 1 en móvil muy pequeño */
+  .servicios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Portafolio: 2 columnas */
+  .proyectos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Contacto: 1 columna */
+  .contacto-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+  .servicios-grid,
+  .proyectos-grid {
+    grid-template-columns: 1fr; /* 1 sola columna */
+  }
+
+  .floating-card {
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+  }
+}
