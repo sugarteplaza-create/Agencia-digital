@@ -202,7 +202,7 @@ header {
   color: var(--color-primario);
 }
 
-/* Botón hamburguesa (oculto en desktop, visible en móvil) */
+/* Botón hamburguesa (oculto en desktop,  visible en móvil) */
 .menu-toggle {
   display: none;
   background: none;
