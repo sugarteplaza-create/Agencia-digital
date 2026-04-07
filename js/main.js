@@ -2,7 +2,7 @@
    main.js — Lógica dinámica del sitio NexoWeb
    
    Este archivo contiene tres funcionalidades principales:
-   1. Menú hamburguesa (responsive para móviles)
+   1. Menú hamburguesa ( responsive para móviles )
    2. Galería filtrable del portafolio
    3. Validación y envío del formulario de contacto
    
