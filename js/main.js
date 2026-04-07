@@ -20,7 +20,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   /* ----------------------------------------------------------
-     1. MENÚ HAMBURGUESA (RESPONSIVE)
+     1. MENÚ HAMBURGUESA ( RESPONSIVE )
      En pantallas pequeñas, el menú se oculta y se muestra
      con un botón. Al hacer clic, alternamos la clase 'abierto'
      en el menú para que CSS lo muestre o lo esconda.
