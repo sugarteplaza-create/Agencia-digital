@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- ====================================================
+       META Y CONFIGURACIÓN BÁSICA
+       charset: define la codificación de caracteres UTF-8
+       para soportar tildes y ñ sin problemas.
+       viewport: hace el sitio responsive en móviles.
+  ==================================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexoWeb | Agencia Digital</title>
+
+  <!-- Vinculación con el archivo de estilos externo -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ====================================================
+       HEADER / NAVEGACIÓN
+       Se usa <header> y <nav> como etiquetas semánticas:
+       el navegador y los motores de búsqueda entienden
+       que esto es cabecera y menú de navegación.
+  ==================================================== -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <span class="logo-icon">&#9670;</span> NexoWeb
+      </div>
+      <!-- Lista de navegación semántica con <ul> y <li> -->
+      <ul class="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#portafolio">Portafolio</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <!-- Botón hamburguesa para menú móvil -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">&#9776;</button>
+    </nav>
+  </header>
+
+  <!-- ====================================================
+       SECCIÓN HERO (INICIO)
+       <section> es una etiqueta semántica que agrupa
+       contenido temáticamente relacionado.
+       id="inicio" permite la navegación interna (#inicio).
+  ==================================================== -->
+  <section id="inicio" class="hero">
+    <div class="hero-content">
+      <h1>Transformamos ideas en <span class="highlight">experiencias digitales</span></h1>
+      <p>Somos NexoWeb, una agencia digital especializada en diseño web, desarrollo de aplicaciones y estrategias digitales.</p>
+      <a href="#contacto" class="btn-primary">Trabaja con nosotros</a>
+    </div>
+    <!-- Tarjetas flotantes decorativas -->
+    <div class="hero-visual">
+      <div class="floating-card card-1">&#128187; Desarrollo Web</div>
+      <div class="floating-card card-2">&#127912; Diseño UX/UI</div>
+      <div class="floating-card card-3">&#128200; Marketing Digital</div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECCIÓN SERVICIOS
+       <article> sería correcto para cada servicio
+       independiente, pero aquí usamos <div> dentro de
+       <section> para agrupar tarjetas relacionadas.
+  ==================================================== -->
+  <section id="servicios" class="servicios">
+    <div class="container">
+      <h2 class="section-title">Nuestros Servicios</h2>
+      <p class="section-subtitle">Soluciones completas para tu presencia digital</p>
+
+      <div class="servicios-grid">
+        <!-- Cada tarjeta de servicio usa <article> porque es contenido autónomo -->
+        <article class="servicio-card">
+          <div class="servicio-icon">&#128196;</div>
+          <h3>Desarrollo Web</h3>
+          <p>Creamos sitios web modernos, rápidos y responsivos con HTML5, CSS3 y JavaScript.</p>
+        </article>
+        <article class="servicio-card">
+          <div class="servicio-icon">&#127912;</div>
+          <h3>Diseño UX/UI</h3>
+          <p>Diseños centrados en el usuario, intuitivos y visualmente atractivos para tu marca.</p>
+        </article>
+        <article class="servicio-card">
+          <div class="servicio-icon">&#128200;</div>
+          <h3>SEO & Marketing</h3>
+          <p>Estrategias de posicionamiento para que tu negocio sea visible en Google.</p>
+        </article>
+        <article class="servicio-card">
+          <div class="servicio-icon">&#128241;</div>
+          <h3>Apps Móviles</h3>
+          <p>Aplicaciones nativas y web-apps para iOS y Android con tecnologías modernas.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECCIÓN PORTAFOLIO (GALERÍA INTERACTIVA)
+       Esta es la SECCIÓN DINÁMICA requerida por la actividad.
+       Usa JavaScript para filtrar proyectos por categoría,
+       lo que crea interacción sin recargar la página.
+  ==================================================== -->
+  <section id="portafolio" class="portafolio">
+    <div class="container">
+      <h2 class="section-title">Nuestro Portafolio</h2>
+      <p class="section-subtitle">Proyectos que hablan por nosotros</p>
+
+      <!-- Botones de filtro: al hacer clic llaman a filtrarProyectos() -->
+      <div class="filtros" role="group" aria-label="Filtros de portafolio">
+        <button class="filtro-btn activo" onclick="filtrarProyectos('todos')">Todos</button>
+        <button class="filtro-btn" onclick="filtrarProyectos('web')">Web</button>
+        <button class="filtro-btn" onclick="filtrarProyectos('app')">Apps</button>
+        <button class="filtro-btn" onclick="filtrarProyectos('diseño')">Diseño</button>
+      </div>
+
+      <!-- Contenedor de tarjetas de proyectos -->
+      <div class="proyectos-grid" id="proyectosGrid">
+        <div class="proyecto-card" data-categoria="web">
+          <div class="proyecto-img" style="background: linear-gradient(135deg, #667eea, #764ba2);">&#127758;</div>
+          <div class="proyecto-info">
+            <h3>E-commerce Fashion</h3>
+            <span class="tag">Web</span>
+            <p>Tienda online completa con carrito de compras y pasarela de pagos.</p>
+          </div>
+        </div>
+        <div class="proyecto-card" data-categoria="app">
+          <div class="proyecto-img" style="background: linear-gradient(135deg, #f093fb, #f5576c);">&#128241;</div>
+          <div class="proyecto-info">
+            <h3>App Delivery Local</h3>
+            <span class="tag">App</span>
+            <p>Aplicación móvil para gestión de pedidos a restaurantes locales.</p>
+          </div>
+        </div>
+        <div class="proyecto-card" data-categoria="diseño">
+          <div class="proyecto-img" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">&#127912;</div>
+          <div class="proyecto-info">
+            <h3>Branding Corporativo</h3>
+            <span class="tag">Diseño</span>
+            <p>Identidad visual completa para empresa del sector financiero.</p>
+          </div>
+        </div>
+        <div class="proyecto-card" data-categoria="web">
+          <div class="proyecto-img" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">&#128203;</div>
+          <div class="proyecto-info">
+            <h3>Portal Educativo</h3>
+            <span class="tag">Web</span>
+            <p>Plataforma de aprendizaje online con más de 500 cursos disponibles.</p>
+          </div>
+        </div>
+        <div class="proyecto-card" data-categoria="app">
+          <div class="proyecto-img" style="background: linear-gradient(135deg, #fa709a, #fee140);">&#128170;</div>
+          <div class="proyecto-info">
+            <h3>App Fitness Tracker</h3>
+            <span class="tag">App</span>
+            <p>Seguimiento de ejercicios, nutrición y metas de salud personal.</p>
+          </div>
+        </div>
+        <div class="proyecto-card" data-categoria="diseño">
+          <div class="proyecto-img" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">&#128444;</div>
+          <div class="proyecto-info">
+            <h3>UI/UX Fintech</h3>
+            <span class="tag">Diseño</span>
+            <p>Rediseño de experiencia para aplicación bancaria con 1M de usuarios.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       SECCIÓN CONTACTO (FORMULARIO DINÁMICO)
+       Segunda parte dinámica: el formulario valida los
+       datos con JavaScript antes de "enviarlos".
+       Esto cumple con el requisito de sección interactiva.
+  ==================================================== -->
+  <section id="contacto" class="contacto">
+    <div class="container">
+      <h2 class="section-title">Contáctanos</h2>
+      <p class="section-subtitle">Cuéntanos tu proyecto y te respondemos en 24 horas</p>
+
+      <div class="contacto-wrapper">
+        <!-- Información de contacto -->
+        <div class="contacto-info">
+          <div class="info-item">
+            <span class="info-icon">&#128205;</span>
+            <div>
+              <strong>Dirección</strong>
+              <p>Av. Digital 1234, Santiago, Chile</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">&#128231;</span>
+            <div>
+              <strong>Email</strong>
+              <p>hola@nexoweb.cl</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">&#128222;</span>
+            <div>
+              <strong>Teléfono</strong>
+              <p>+56 9 1234 5678</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario de contacto con validación JS -->
+        <form class="contacto-form" id="contactoForm" novalidate>
+          <div class="form-group">
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+            <!-- El span se usa para mostrar mensajes de error desde JS -->
+            <span class="error-msg" id="errorNombre"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico *</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+            <span class="error-msg" id="errorEmail"></span>
+          </div>
+          <div class="form-group">
+            <label for="servicio">Servicio de interés</label>
+            <!-- <select> permite elegir entre opciones predefinidas -->
+            <select id="servicio" name="servicio">
+              <option value="">Selecciona un servicio</option>
+              <option value="web">Desarrollo Web</option>
+              <option value="app">Aplicación Móvil</option>
+              <option value="diseño">Diseño UX/UI</option>
+              <option value="seo">SEO & Marketing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje *</label>
+            <!-- <textarea> para textos largos de varias líneas -->
+            <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+            <span class="error-msg" id="errorMensaje"></span>
+          </div>
+          <button type="submit" class="btn-primary btn-full">Enviar mensaje &#9654;</button>
+        </form>
+
+        <!-- Modal de confirmación (oculto por defecto, se muestra con JS) -->
+        <div class="modal-overlay" id="modalOverlay">
+          <div class="modal">
+            <div class="modal-icon">&#10003;</div>
+            <h3>¡Mensaje enviado!</h3>
+            <p>Gracias por contactarnos. Te responderemos dentro de 24 horas.</p>
+            <button class="btn-primary" onclick="cerrarModal()">Aceptar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       FOOTER
+       <footer> es una etiqueta semántica que indica
+       el pie de página del sitio.
+  ==================================================== -->
+  <footer>
+    <div class="container footer-content">
+      <p>&copy; 2025 NexoWeb Agencia Digital. Todos los derechos reservados.</p>
+      <p>Desarrollado con HTML5, CSS3 y JavaScript &#10084;</p>
+    </div>
+  </footer>
+
+  <!-- ====================================================
+       VINCULACIÓN DE JAVASCRIPT
+       Se coloca AL FINAL del body para que el HTML
+       cargue primero y luego se ejecute el JS.
+       Esto mejora el rendimiento de carga de la página.
+  ==================================================== -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
