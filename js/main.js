@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
        filtrarProyectos(categoria)
      - La función recorre todas las tarjetas y agrega o quita
        la clase 'oculto' según si la categoría coincide.
-     - CSS oculta los elementos con clase 'oculto' (display:none)
+     - CSS oculta los elementos con clase 'oculto' (display:none).
   ---------------------------------------------------------- */
 
   // Hacemos la función global para que los onclick del HTML puedan llamarla
